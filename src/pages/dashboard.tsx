@@ -1,13 +1,17 @@
-import { issueColumns } from "@/components/issue-table/columns";
-import QueryCard from "@/components/query-card";
-import { QueryTable } from "@/components/query-table";
+import { useState } from "react";
+import { signOut } from "next-auth/react";
+
+import { NewspaperIcon, UserIcon } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import QueryCard from "@/components/query-card";
+import { QueryTable } from "@/components/query-table";
+import { issueColumns } from "@/components/issue-table/columns";
 import { userColumns } from "@/components/user-table/columns";
+
 import { api } from "@/utils/api";
-import { NewspaperIcon, UserIcon } from "lucide-react";
-import { signOut } from "next-auth/react";
-import { useState } from "react";
+import type { Issue, User } from "@/server/db/schema";
 
 type DashboardTab = "overview" | "user-management";
 
@@ -61,10 +65,10 @@ export default function DashboardPage() {
                   icon={NewspaperIcon}
                 />
               </div>
-              <QueryTable query={allIssues} columns={issueColumns} />
+              <QueryTable<User> query={allIssues} columns={issueColumns} />
             </TabsContent>
             <TabsContent value="user-management">
-              <QueryTable query={allUsers} columns={userColumns} />
+              <QueryTable<Issue> query={allUsers} columns={userColumns} />
             </TabsContent>
           </Tabs>
         </div>

@@ -77,19 +77,9 @@ export const QueryTable = <TData,>({
     );
   }
 
-  if (!data) {
-    return (
-      <Alert>
-        <Terminal className="h-4 w-4" />
-        <AlertTitle>No data</AlertTitle>
-        <AlertDescription>No data found</AlertDescription>
-      </Alert>
-    );
-  }
-
   return (
     <div className="container mx-auto py-10">
-      <DataTable columns={columns} data={data} />
+      <DataTable columns={columns} data={data!} />
     </div>
   );
 };

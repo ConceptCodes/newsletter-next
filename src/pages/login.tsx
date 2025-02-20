@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { signIn } from "next-auth/react";
-import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp";
+import { REGEXP_ONLY_DIGITS } from "input-otp";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -42,11 +42,10 @@ export default function LoginPage() {
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            <div className="space-y-2 items-center">
-              <Label htmlFor="email">Code</Label>
+            <div className="flex flex-col items-center space-y-2">
               <InputOTP
                 maxLength={6}
-                pattern={REGEXP_ONLY_DIGITS_AND_CHARS}
+                pattern={REGEXP_ONLY_DIGITS}
                 value={totpCode}
                 onChange={(value) => setTotpCode(value)}
               >

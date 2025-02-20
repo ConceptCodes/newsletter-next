@@ -41,13 +41,13 @@ export default function NewsletterLanding() {
     },
   });
 
-  const handleSubscribe = ({ email }: SubscribeSchema) => {
-    subscribeMutation.mutate({ email });
+  const handleSubscribe = async ({ email }: SubscribeSchema) => {
+    await subscribeMutation.mutateAsync({ email });
   };
 
   return (
-    <div className="flex min-h-[100dvh] w-full flex-col">
-      <header className="flex h-14 items-center px-4 lg:px-6">
+    <div className="flex min-h-[100dvh] w-full flex-col items-center">
+      <header className="flex h-14 w-full items-center px-4 lg:px-6">
         <Link className="flex items-center justify-center" href="#">
           <Mail className="mr-2 h-6 w-6" />
           <span className="font-bold">{env.NEXT_PUBLIC_APP_NAME}</span>
@@ -55,15 +55,15 @@ export default function NewsletterLanding() {
         <nav className="ml-auto flex gap-4 sm:gap-6">
           <Link
             className="text-sm font-medium underline-offset-4 hover:underline"
-            href="#about"
+            href="https://github.com/conceptcodes/newsletter-next"
           >
             About
           </Link>
         </nav>
       </header>
-      <main className="flex-1">
+      <main className="flex w-full flex-1 flex-col items-center">
         <section className="w-full bg-gradient-to-b from-white to-gray-100 py-12 dark:from-gray-900 dark:to-gray-800 md:py-24 lg:py-32 xl:py-48">
-          <div className="container px-4 md:px-6">
+          <div className="container mx-auto px-4 md:px-6">
             <div className="flex flex-col items-center space-y-4 text-center">
               <div className="space-y-2">
                 <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
@@ -113,7 +113,7 @@ export default function NewsletterLanding() {
           </div>
         </section>
         <section id="about" className="w-full py-12 md:py-24 lg:py-32">
-          <div className="container px-4 md:px-6">
+          <div className="container mx-auto px-4 md:px-6">
             <h2 className="mb-8 text-center text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
               Why Subscribe?
             </h2>
