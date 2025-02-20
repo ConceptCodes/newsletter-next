@@ -12,6 +12,10 @@ export const issueRouter = createTRPCRouter({
     const total = await ctx.db.select().from(issues);
     return total;
   }),
+  total: protectedProcedure.query(async ({ ctx }) => {
+    const total = await ctx.db.select().from(issues);
+    return total.length;
+  }),
   getSubset: protectedProcedure.query(async ({ ctx }) => {
     const total = await ctx.db.select().from(issues).limit(5);
     return total;

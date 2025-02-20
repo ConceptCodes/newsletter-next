@@ -5,7 +5,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import React from "react";
 
 interface QueryCardProps {
-  query: QueryObserverBaseResult<number | string>;
+  query: QueryObserverBaseResult<number>;
   title: string;
   icon: LucideIcon;
 }
@@ -33,7 +33,7 @@ function QueryCard({ query, title, icon }: QueryCardProps) {
         {isLoading ? (
           <Skeleton className="h-6 w-[75px] pb-4" />
         ) : (
-          <div className="text-2xl font-bold">{data}</div>
+          <div className="text-2xl font-bold">{data ?? 0}</div>
         )}
       </CardContent>
     </Card>

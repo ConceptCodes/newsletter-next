@@ -29,6 +29,8 @@ export const issues = createTable(
   }),
 );
 
+export type Issue = typeof issues.$inferSelect;
+
 export const users = createTable("user", {
   id: varchar("id", { length: 255 })
     .notNull()
@@ -42,3 +44,5 @@ export const users = createTable("user", {
   }).default(sql`CURRENT_TIMESTAMP`),
   image: varchar("image", { length: 255 }),
 });
+
+export type User = typeof users.$inferSelect;

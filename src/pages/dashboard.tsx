@@ -1,20 +1,37 @@
+import { issueColumns } from "@/components/issue-table/columns";
 import QueryCard from "@/components/query-card";
+import { QueryTable } from "@/components/query-table";
+import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { userColumns } from "@/components/user-table/columns";
 import { api } from "@/utils/api";
 import { NewspaperIcon, UserIcon } from "lucide-react";
+import { signOut } from "next-auth/react";
 import { useState } from "react";
 
-type DashboardTab = "overview" | "issues" | "user-management";
+type DashboardTab = "overview" | "user-management";
 
-export const DashboardPage = () => {
+export default function DashboardPage() {
   const [dashboardTab, setDashboardTab] = useState<DashboardTab>("overview");
 
   const totalUsers = api.user.total.useQuery();
-  const totalIssues = api.issue.getAll.useQuery();
+  const totalIssues = api.issue.total.useQuery();
+
+  const allUsers = api.user.getAll.useQuery();
+  const allIssues = api.issue.getAll.useQuery();
+
+  const handleLogout = async () => {
+    await signOut({
+      redirectTo: "/",
+    });
+  };
 
   return (
     <div className="flex h-full w-full flex-col">
       <div className="hidden flex-col md:flex">
+        <Button className="mb-4" onClick={handleLogout}>
+          Logout
+        </Button>
         <div className="flex-1 space-y-4 p-8">
           <Tabs value={dashboardTab} className="space-y-4">
             <TabsList>
@@ -30,12 +47,6 @@ export const DashboardPage = () => {
               >
                 Users
               </TabsTrigger>
-              <TabsTrigger
-                value="issues"
-                onClick={() => setDashboardTab("issues")}
-              >
-                Issues
-              </TabsTrigger>
             </TabsList>
             <TabsContent value="overview" className="space-y-4">
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -50,12 +61,14 @@ export const DashboardPage = () => {
                   icon={NewspaperIcon}
                 />
               </div>
+              <QueryTable query={allIssues} columns={issueColumns} />
             </TabsContent>
-            <TabsContent value="user-management"></TabsContent>
-            <TabsContent value="issues"></TabsContent>
+            <TabsContent value="user-management">
+              <QueryTable query={allUsers} columns={userColumns} />
+            </TabsContent>
           </Tabs>
         </div>
       </div>
     </div>
   );
-};
+}
