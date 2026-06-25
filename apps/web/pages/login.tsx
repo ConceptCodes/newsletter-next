@@ -12,7 +12,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@newsletter/ui/components/ui/card";
-import { Label } from "@newsletter/ui/components/ui/label";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@newsletter/ui/components/ui/input-otp";
 
 export default function LoginPage() {

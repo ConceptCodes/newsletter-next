@@ -17,7 +17,7 @@ export const authConfig = {
       credentials: {
         code: { label: "Totp Code", type: "text", placeholder: "000000" },
       },
-      async authorize(credentials, req) {
+      async authorize(credentials) {
         const user = { id: "1", name: "Admin", email: env.ADMIN_EMAIL };
         const { code } = credentials as { code: string };
         if (validateTotp(code)) {
