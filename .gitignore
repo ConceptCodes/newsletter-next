@@ -8,6 +8,7 @@ node_modules
 .turbo/
 .output/
 dist/
+.workflow-data/
 
 # env
 .env

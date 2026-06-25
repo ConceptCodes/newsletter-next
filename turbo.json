@@ -5,6 +5,7 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
+      "outputs": [".next/**", "!.next/cache/**", "app/.well-known/workflow/**"],
       "env": [
         "DATABASE_URL",
         "AUTH_SECRET",
@@ -16,7 +17,16 @@
         "SMTP_PASS",
         "SMTP_FROM",
         "NODE_ENV",
-        "NEXT_PUBLIC_APP_NAME"
+        "NEXT_PUBLIC_APP_NAME",
+        "CRON_SECRET",
+        "AI_GATEWAY_API_KEY",
+        "AGENT_NICHE",
+        "AGENT_MODEL",
+        "AGENT_TONE",
+        "AGENT_AUDIENCE",
+        "AGENT_MAX_REVISIONS",
+        "AGENT_SCORE_THRESHOLD",
+        "WORKFLOW_LOCAL_DATA_DIR"
       ]
     },
     "dev": {
@@ -27,7 +37,7 @@
       "outputs": []
     },
     "typecheck": {
-      "dependsOn": ["^typecheck"],
+      "dependsOn": ["^typecheck", "build"],
       "outputs": []
     }
   }
