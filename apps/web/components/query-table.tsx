@@ -19,10 +19,7 @@ type QueryTableProps<TData> = {
   columns: ColumnDef<unknown>[];
 };
 
-export const QueryTable = <TData,>({
-  query,
-  columns,
-}: QueryTableProps<TData>) => {
+export const QueryTable = <TData,>({ query, columns }: QueryTableProps<TData>) => {
   const { data, isLoading, isError, error } = query;
 
   if (isLoading) {

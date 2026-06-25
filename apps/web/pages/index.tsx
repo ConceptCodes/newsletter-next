@@ -96,17 +96,13 @@ export default function NewsletterLanding() {
                         </FormItem>
                       )}
                     />
-                    <Button
-                      type="submit"
-                      disabled={subscribeMutation.isPending}
-                    >
+                    <Button type="submit" disabled={subscribeMutation.isPending}>
                       Subscribe
                     </Button>
                   </form>
                 </Form>
                 <p className="text-xs text-gray-500 dark:text-gray-400">
-                  Join {isLoading ? 0 : total}+ tech enthusiasts. No spam,
-                  unsubscribe anytime.
+                  Join {isLoading ? 0 : total}+ tech enthusiasts. No spam, unsubscribe anytime.
                 </p>
               </div>
             </div>
@@ -129,8 +125,7 @@ export default function NewsletterLanding() {
                 <Sparkles className="h-10 w-10 text-primary" />
                 <h3 className="text-xl font-bold">Exclusive Content</h3>
                 <p className="text-gray-500 dark:text-gray-400">
-                  Access interviews with industry leaders and exclusive
-                  articles.
+                  Access interviews with industry leaders and exclusive articles.
                 </p>
               </div>
               <div className="flex flex-col items-center space-y-3 text-center">

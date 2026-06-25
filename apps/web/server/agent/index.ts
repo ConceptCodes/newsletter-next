@@ -73,8 +73,7 @@ workflow.addNode({
   id: "critique",
   run: async (input: any) => critiqueAgent.run(input),
   edges: {
-    next: async (output: any) =>
-      output.critique === null ? "design" : "write",
+    next: async (output: any) => (output.critique === null ? "design" : "write"),
   },
 });
 

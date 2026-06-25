@@ -20,11 +20,7 @@ export const issueRouter = createTRPCRouter({
     .input(z.object({ slug: z.string() }))
     .query(async ({ ctx, input }) => {
       const slug = input.slug.replace(/-/g, " ");
-      const issue = await ctx.db
-        .select()
-        .from(issues)
-        .where(eq(issues.title, slug))
-        .limit(1);
+      const issue = await ctx.db.select().from(issues).where(eq(issues.title, slug)).limit(1);
       return issue[0];
     }),
 });

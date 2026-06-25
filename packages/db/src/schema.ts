@@ -1,12 +1,5 @@
 import { sql } from "drizzle-orm";
-import {
-  index,
-  integer,
-  pgTableCreator,
-  text,
-  timestamp,
-  varchar,
-} from "drizzle-orm/pg-core";
+import { index, integer, pgTableCreator, text, timestamp, varchar } from "drizzle-orm/pg-core";
 
 export const createTable = pgTableCreator((name) => `newsletter_${name}`);
 
@@ -18,9 +11,7 @@ export const issues = createTable(
     createdAt: timestamp("created_at", { withTimezone: true })
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
-    updatedAt: timestamp("updated_at", { withTimezone: true }).$onUpdate(
-      () => new Date(),
-    ),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).$onUpdate(() => new Date()),
     content: text("content").notNull(),
     published: timestamp("published", { withTimezone: true }),
   },

@@ -13,11 +13,7 @@ import {
   CardTitle,
 } from "@newsletter/ui/components/ui/card";
 import { Label } from "@newsletter/ui/components/ui/label";
-import {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSlot,
-} from "@newsletter/ui/components/ui/input-otp";
+import { InputOTP, InputOTPGroup, InputOTPSlot } from "@newsletter/ui/components/ui/input-otp";
 
 export default function LoginPage() {
   const [totpCode, setTotpCode] = useState("");
@@ -33,9 +29,7 @@ export default function LoginPage() {
     <div className="flex min-h-screen items-center justify-center bg-gray-100">
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-center text-2xl font-bold">
-            Welcome Back
-          </CardTitle>
+          <CardTitle className="text-center text-2xl font-bold">Welcome Back</CardTitle>
           <CardDescription className="text-center">
             Please enter your 6-digit TOTP code to login.
           </CardDescription>

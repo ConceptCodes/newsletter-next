@@ -3,9 +3,7 @@ import { z } from "zod";
 const serverSchema = z.object({
   AUTH_SECRET: z.string().optional(),
   DATABASE_URL: z.string().url(),
-  NODE_ENV: z
-    .enum(["development", "test", "production"])
-    .default("development"),
+  NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
   TOTP_SECRET: z.string(),
   ADMIN_EMAIL: z.string().email(),
   SMTP_HOST: z.string(),
@@ -22,16 +20,11 @@ const clientSchema = z.object({
 type ServerEnv = z.infer<typeof serverSchema>;
 type ClientEnv = z.infer<typeof clientSchema>;
 
-function parseEnv<T extends z.ZodType>(
-  schema: T,
-  prefix: string = "",
-): z.infer<T> {
+function parseEnv<T extends z.ZodType>(schema: T, prefix: string = ""): z.infer<T> {
   const result = schema.safeParse(
     Object.fromEntries(
       Object.entries(process.env)
-        .filter(([key]) =>
-          prefix ? key.startsWith(prefix) : !key.startsWith("NEXT_PUBLIC_")
-        )
+        .filter(([key]) => (prefix ? key.startsWith(prefix) : !key.startsWith("NEXT_PUBLIC_")))
         .map(([key, value]) => [key.replace(prefix, ""), value]),
     ),
   );

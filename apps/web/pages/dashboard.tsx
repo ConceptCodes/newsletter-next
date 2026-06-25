@@ -39,10 +39,7 @@ export default function DashboardPage() {
         <div className="flex-1 space-y-4 p-8">
           <Tabs value={dashboardTab} className="space-y-4">
             <TabsList>
-              <TabsTrigger
-                value="overview"
-                onClick={() => setDashboardTab("overview")}
-              >
+              <TabsTrigger value="overview" onClick={() => setDashboardTab("overview")}>
                 Overview
               </TabsTrigger>
               <TabsTrigger
@@ -54,16 +51,8 @@ export default function DashboardPage() {
             </TabsList>
             <TabsContent value="overview" className="space-y-4">
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                <QueryCard
-                  query={totalUsers}
-                  title="Total Users"
-                  icon={UserIcon}
-                />
-                <QueryCard
-                  query={totalIssues}
-                  title="Total Issues"
-                  icon={NewspaperIcon}
-                />
+                <QueryCard query={totalUsers} title="Total Users" icon={UserIcon} />
+                <QueryCard query={totalIssues} title="Total Issues" icon={NewspaperIcon} />
               </div>
               <QueryTable<User> query={allIssues} columns={issueColumns} />
             </TabsContent>
