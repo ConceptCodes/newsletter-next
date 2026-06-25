@@ -1,0 +1,70 @@
+"use client";
+
+import { useState } from "react";
+import { signIn } from "next-auth/react";
+import { REGEXP_ONLY_DIGITS } from "input-otp";
+
+import { Button } from "@newsletter/ui/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@newsletter/ui/components/ui/card";
+import { Label } from "@newsletter/ui/components/ui/label";
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSlot,
+} from "@newsletter/ui/components/ui/input-otp";
+
+export default function LoginPage() {
+  const [totpCode, setTotpCode] = useState("");
+
+  const handleLogin = async () => {
+    await signIn("credentials", {
+      code: totpCode,
+      redirectTo: `${window.location.origin}/dashboard`,
+    });
+  };
+
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-gray-100">
+      <Card className="w-full max-w-md">
+        <CardHeader className="space-y-1">
+          <CardTitle className="text-center text-2xl font-bold">
+            Welcome Back
+          </CardTitle>
+          <CardDescription className="text-center">
+            Please enter your 6-digit TOTP code to login.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div className="flex flex-col items-center space-y-2">
+              <InputOTP
+                maxLength={6}
+                pattern={REGEXP_ONLY_DIGITS}
+                value={totpCode}
+                onChange={(value) => setTotpCode(value)}
+              >
+                <InputOTPGroup>
+                  <InputOTPSlot index={0} />
+                  <InputOTPSlot index={1} />
+                  <InputOTPSlot index={2} />
+                  <InputOTPSlot index={3} />
+                  <InputOTPSlot index={4} />
+                  <InputOTPSlot index={5} />
+                </InputOTPGroup>
+              </InputOTP>
+            </div>
+          </div>
+          <Button className="mt-4 w-full" type="submit" onClick={handleLogin}>
+            Login
+          </Button>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
