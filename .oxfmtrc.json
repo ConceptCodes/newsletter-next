@@ -1,0 +1,3 @@
+{
+  "ignorePatterns": [".next/**", ".turbo/**", ".output/**", "dist/**", "out/**", "bun.lock"]
+}

@@ -14,7 +14,7 @@
   },
   "scripts": {
     "build": "tsc --noEmit",
-    "lint": "eslint src --max-warnings 0",
+    "lint": "oxlint src --deny-warnings",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
