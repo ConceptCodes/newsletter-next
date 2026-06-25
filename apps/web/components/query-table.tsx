@@ -1,6 +1,5 @@
-import type { QueryObserverBaseResult } from "@tanstack/react-query";
-import { DataTable } from "./ui/data-table";
 import type { ColumnDef } from "@tanstack/react-table";
+import { DataTable } from "@newsletter/ui/components/ui/data-table";
 import {
   Table,
   TableBody,
@@ -10,13 +9,19 @@ import {
   TableHeader,
   TableRow,
 } from "@newsletter/ui/components/ui/table";
-import { Skeleton } from "./ui/skeleton";
+import { Skeleton } from "@newsletter/ui/components/ui/skeleton";
 import { Alert, AlertDescription, AlertTitle } from "@newsletter/ui/components/ui/alert";
 import { Terminal } from "lucide-react";
 
 type QueryTableProps<TData> = {
-  query: QueryObserverBaseResult<TData[]>;
-  columns: ColumnDef<unknown>[];
+  // Structural: accepts both raw react-query and tRPC query results.
+  query: {
+    data: TData[] | undefined;
+    isLoading: boolean;
+    isError: boolean;
+    error: unknown;
+  };
+  columns: ColumnDef<TData>[];
 };
 
 export const QueryTable = <TData,>({ query, columns }: QueryTableProps<TData>) => {

@@ -1,11 +1,11 @@
-import { type QueryObserverBaseResult } from "@tanstack/react-query";
 import { type LucideIcon } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "@newsletter/ui/components/ui/card";
 import { Skeleton } from "@newsletter/ui/components/ui/skeleton";
 import React from "react";
 
 interface QueryCardProps {
-  query: QueryObserverBaseResult<number>;
+  // Structural: accepts both raw react-query and tRPC query results.
+  query: { data: number | undefined; isLoading: boolean };
   title: string;
   icon: LucideIcon;
 }
